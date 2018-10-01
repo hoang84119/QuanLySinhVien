@@ -12,8 +12,8 @@ namespace DataAccess
     {
         #region Bien cuc bo
         public string chuoiKetNoi = @"Data Source=SANG-LAPTOP\SQLEXPRESS;Initial Catalog=QLSINHVIEN4;Integrated Security=True";
-        private SqlConnection ketNoi;
-        private SqlDataAdapter boDocGhi;
+        private SqlConnection connection;
+        private SqlDataAdapter adapter;
         private string chuoiSQL;
         private string tenBang;
         #endregion
@@ -40,10 +40,73 @@ namespace DataAccess
             DocBang();
         }
         #endregion
-        #region Cac phuong thuc xu ly
+        #region Cac phuong thuc xu ly: doc, ghi, loc du lieu
         public void DocBang()
         {
-            throw new NotImplementedException();
+            if(chuoiSQL == null)
+            {
+                chuoiSQL = "SELECT * from " + tenBang;
+            }
+            if(connection == null)
+            {
+                connection = new SqlConnection(chuoiKetNoi);
+            }
+            try
+            {
+                adapter = new SqlDataAdapter(chuoiSQL, connection);
+                adapter.FillSchema(this, SchemaType.Mapped);
+                adapter.Fill(this);
+                adapter.RowUpdated += new SqlRowUpdatedEventHandler(DARowUpdated);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Boolean GhiBang()
+        {
+            Boolean ketQua = true;
+            try
+            {
+                adapter.Update(this);
+                this.AcceptChanges();
+            }catch(SqlException ex)
+            {
+                this.RejectChanges();
+                ketQua = false;
+                throw ex;
+            }
+            return ketQua;
+        }
+
+        public void LocDuLieu (string dieuKienLoc)
+        {
+            try
+            {
+                this.DefaultView.RowFilter = dieuKienLoc;
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+        #region Cac phuong thuc thuc hien lenh
+
+        #endregion
+        #region Xu ly su kien
+        private void DARowUpdated(object sender, SqlRowUpdatedEventArgs e)
+        {
+            if(this.PrimaryKey[0].AutoIncrement)
+            {
+                if((e.Status == UpdateStatus.Continue)&&(e.StatementType == StatementType.Insert))
+                {
+                    SqlCommand cmd = new SqlCommand("Select @@IDENTITY", connection);
+                    e.Row.ItemArray[0] = cmd.ExecuteScalar();
+                    e.Row.AcceptChanges();
+                }
+            }
         }
         #endregion
     }
