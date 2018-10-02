@@ -62,6 +62,7 @@
             this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
             this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnHuyTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHinh)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -226,6 +227,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnHuyTimKiem);
             this.groupBox2.Controls.Add(this.btnTimKiem);
             this.groupBox2.Controls.Add(this.txtTimKiem);
             this.groupBox2.Location = new System.Drawing.Point(34, 285);
@@ -240,18 +242,21 @@
             this.btnTimKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTimKiem.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
             this.btnTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.ImageOptions.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(468, 21);
+            this.btnTimKiem.Location = new System.Drawing.Point(434, 21);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(82, 24);
             this.btnTimKiem.TabIndex = 4;
             this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // txtTimKiem
             // 
             this.txtTimKiem.Location = new System.Drawing.Point(18, 23);
             this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(444, 20);
+            this.txtTimKiem.Size = new System.Drawing.Size(410, 20);
             this.txtTimKiem.TabIndex = 13;
+            this.txtTimKiem.Text = "Nhập tên cần tìm";
+            this.txtTimKiem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtTimKiem_MouseDown);
             // 
             // gvSinhVien
             // 
@@ -333,6 +338,7 @@
             this.btnXoa.Size = new System.Drawing.Size(56, 60);
             this.btnXoa.TabIndex = 6;
             this.btnXoa.Text = "Xóa";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -368,6 +374,7 @@
             this.btnHuy.Size = new System.Drawing.Size(56, 60);
             this.btnHuy.TabIndex = 9;
             this.btnHuy.Text = "Hủy";
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnThoat
             // 
@@ -379,6 +386,7 @@
             this.btnThoat.Size = new System.Drawing.Size(56, 60);
             this.btnThoat.TabIndex = 10;
             this.btnThoat.Text = "Thoát";
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // label7
             // 
@@ -389,6 +397,18 @@
             this.label7.Size = new System.Drawing.Size(284, 32);
             this.label7.TabIndex = 11;
             this.label7.Text = "QUẢN LÝ SINH VIÊN";
+            // 
+            // btnHuyTimKiem
+            // 
+            this.btnHuyTimKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnHuyTimKiem.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnHuyTimKiem.Enabled = false;
+            this.btnHuyTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnHuyTimKiem.Location = new System.Drawing.Point(522, 21);
+            this.btnHuyTimKiem.Name = "btnHuyTimKiem";
+            this.btnHuyTimKiem.Size = new System.Drawing.Size(23, 24);
+            this.btnHuyTimKiem.TabIndex = 14;
+            this.btnHuyTimKiem.Click += new System.EventHandler(this.btnHuyTimKiem_Click);
             // 
             // Form1
             // 
@@ -456,6 +476,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
+        private DevExpress.XtraEditors.SimpleButton btnHuyTimKiem;
     }
 }
 

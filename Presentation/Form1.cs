@@ -109,5 +109,51 @@ namespace Presentation
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DSSV.RemoveAt(DSSV.Position);
+                if (BangSinhVien.GhiBang())
+                {
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DSSV.CancelCurrentEdit();
+            BangSinhVien.RejectChanges();
+            BatNutLenh(false);
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            BangSinhVien.LocDuLieu("HoTen LIKE '%" + txtTimKiem.Text + "%'");
+            btnHuyTimKiem.Enabled = true;
+        }
+
+        private void btnHuyTimKiem_Click(object sender, EventArgs e)
+        {
+            BangSinhVien.LocDuLieu("");
+            txtTimKiem.Text = "Nhập tên cần tìm";
+            btnHuyTimKiem.Enabled = false;
+        }
+
+        private void txtTimKiem_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtTimKiem.Text = "";
+        }
     }
 }
