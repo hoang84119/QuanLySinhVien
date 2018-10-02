@@ -98,6 +98,10 @@
       <Project>{933cdf4d-ffda-4135-9cd7-7866719602aa}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{F96460CC-ED03-4DBE-B87A-50982133A078}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

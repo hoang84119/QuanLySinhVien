@@ -49,6 +49,12 @@
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.gvSinhVien = new System.Windows.Forms.DataGridView();
+            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
             this.btnSua = new DevExpress.XtraEditors.SimpleButton();
@@ -56,12 +62,6 @@
             this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
             this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHinh)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -123,13 +123,13 @@
             this.radNu.Name = "radNu";
             this.radNu.Size = new System.Drawing.Size(39, 17);
             this.radNu.TabIndex = 10;
-            this.radNu.TabStop = true;
             this.radNu.Text = "Nữ";
             this.radNu.UseVisualStyleBackColor = true;
             // 
             // radNam
             // 
             this.radNam.AutoSize = true;
+            this.radNam.Checked = true;
             this.radNam.Location = new System.Drawing.Point(374, 39);
             this.radNam.Name = "radNam";
             this.radNam.Size = new System.Drawing.Size(47, 17);
@@ -137,6 +137,7 @@
             this.radNam.TabStop = true;
             this.radNam.Text = "Nam";
             this.radNam.UseVisualStyleBackColor = true;
+            this.radNam.CheckedChanged += new System.EventHandler(this.radNam_CheckedChanged);
             // 
             // dateTimePickerNgaySinh
             // 
@@ -215,9 +216,11 @@
             // 
             // pictureBoxHinh
             // 
+            this.pictureBoxHinh.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHinh.Image")));
             this.pictureBoxHinh.Location = new System.Drawing.Point(616, 93);
             this.pictureBoxHinh.Name = "pictureBoxHinh";
             this.pictureBoxHinh.Size = new System.Drawing.Size(163, 167);
+            this.pictureBoxHinh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxHinh.TabIndex = 2;
             this.pictureBoxHinh.TabStop = false;
             // 
@@ -252,6 +255,7 @@
             // 
             // gvSinhVien
             // 
+            this.gvSinhVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.gvSinhVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvSinhVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaSV,
@@ -262,8 +266,50 @@
             this.MaLop});
             this.gvSinhVien.Location = new System.Drawing.Point(34, 363);
             this.gvSinhVien.Name = "gvSinhVien";
-            this.gvSinhVien.Size = new System.Drawing.Size(576, 230);
+            this.gvSinhVien.Size = new System.Drawing.Size(556, 212);
             this.gvSinhVien.TabIndex = 4;
+            // 
+            // MaSV
+            // 
+            this.MaSV.DataPropertyName = "MaSV";
+            this.MaSV.HeaderText = "Mã SV";
+            this.MaSV.Name = "MaSV";
+            this.MaSV.Width = 64;
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.HeaderText = "Họ Tên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.Width = 68;
+            // 
+            // GioiTinh
+            // 
+            this.GioiTinh.DataPropertyName = "GioiTinh";
+            this.GioiTinh.HeaderText = "Giới tính";
+            this.GioiTinh.Name = "GioiTinh";
+            this.GioiTinh.Width = 72;
+            // 
+            // NgaySinh
+            // 
+            this.NgaySinh.DataPropertyName = "NgaySinh";
+            this.NgaySinh.HeaderText = "Ngày sinh";
+            this.NgaySinh.Name = "NgaySinh";
+            this.NgaySinh.Width = 79;
+            // 
+            // DiaChi
+            // 
+            this.DiaChi.DataPropertyName = "DiaChi";
+            this.DiaChi.HeaderText = "Địa chỉ";
+            this.DiaChi.Name = "DiaChi";
+            this.DiaChi.Width = 65;
+            // 
+            // MaLop
+            // 
+            this.MaLop.DataPropertyName = "MaLop";
+            this.MaLop.HeaderText = "Lớp";
+            this.MaLop.Name = "MaLop";
+            this.MaLop.Width = 50;
             // 
             // btnThem
             // 
@@ -275,6 +321,7 @@
             this.btnThem.Size = new System.Drawing.Size(56, 60);
             this.btnThem.TabIndex = 5;
             this.btnThem.Text = "Thêm";
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // btnXoa
             // 
@@ -297,6 +344,7 @@
             this.btnSua.Size = new System.Drawing.Size(56, 60);
             this.btnSua.TabIndex = 7;
             this.btnSua.Text = "Sửa";
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnLuu
             // 
@@ -308,6 +356,7 @@
             this.btnLuu.Size = new System.Drawing.Size(56, 60);
             this.btnLuu.TabIndex = 8;
             this.btnLuu.Text = "Lưu";
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnHuy
             // 
@@ -341,51 +390,11 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "QUẢN LÝ SINH VIÊN";
             // 
-            // MaSV
-            // 
-            this.MaSV.DataPropertyName = "MaSV";
-            this.MaSV.HeaderText = "Mã SV";
-            this.MaSV.Name = "MaSV";
-            this.MaSV.Width = 80;
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Họ Tên";
-            this.HoTen.Name = "HoTen";
-            this.HoTen.Width = 130;
-            // 
-            // GioiTinh
-            // 
-            this.GioiTinh.DataPropertyName = "GioiTinh";
-            this.GioiTinh.HeaderText = "Giới tính";
-            this.GioiTinh.Name = "GioiTinh";
-            this.GioiTinh.Width = 50;
-            // 
-            // NgaySinh
-            // 
-            this.NgaySinh.DataPropertyName = "NgaySinh";
-            this.NgaySinh.HeaderText = "Ngày sinh";
-            this.NgaySinh.Name = "NgaySinh";
-            // 
-            // DiaChi
-            // 
-            this.DiaChi.DataPropertyName = "DiaChi";
-            this.DiaChi.HeaderText = "Địa chỉ";
-            this.DiaChi.Name = "DiaChi";
-            // 
-            // MaLop
-            // 
-            this.MaLop.DataPropertyName = "MaLop";
-            this.MaLop.HeaderText = "Lớp";
-            this.MaLop.Name = "MaLop";
-            this.MaLop.Width = 80;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 626);
+            this.ClientSize = new System.Drawing.Size(812, 597);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnHuy);
@@ -399,7 +408,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnChonHinh);
             this.Name = "Form1";
-            this.Text = "QUẢN LÝ SINH VIÊN";
+            this.Text = "z";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

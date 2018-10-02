@@ -40,6 +40,17 @@ namespace Presentation
             txtDiaChi.DataBindings.Add("text", BangSinhVien, "DiaChi", true);
 
             DSSV = this.BindingContext[BangSinhVien];
+            BatNutLenh(false);
+        }
+
+        private void BatNutLenh(bool isEnabled)
+        {
+            btnThem.Enabled = !isEnabled;
+            btnXoa.Enabled = !isEnabled;
+            btnSua.Enabled = !isEnabled;
+            btnThoat.Enabled = !isEnabled;
+            btnLuu.Enabled = isEnabled;
+            btnHuy.Enabled = isEnabled;
         }
 
         private void LoadGVSinhVien()
@@ -53,6 +64,50 @@ namespace Presentation
             cbbLop.DataSource = BangLop;
             cbbLop.DisplayMember = "TenLop";
             cbbLop.ValueMember = "MaLop";
+        }
+
+        private void radNam_CheckedChanged(object sender, EventArgs e)
+        {
+            radNu.Checked = !radNam.Checked;
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            DSSV.AddNew();
+            BatNutLenh(true);
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DSSV.EndCurrentEdit();
+                if (BangSinhVien.GhiBang())
+                {
+                    MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                BatNutLenh(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DSSV.EndCurrentEdit();
+                if (BangSinhVien.GhiBang())
+                {
+                    MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
