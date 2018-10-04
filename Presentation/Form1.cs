@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace Presentation
     public partial class Form1 : Form
     {
         #region Bien toan cuc
+        string path = "../../Hinh";
         XL_SINHVIEN BangSinhVien;
         XL_LOP BangLop;
         BindingManagerBase DSSV;
@@ -38,7 +40,7 @@ namespace Presentation
             radNam.DataBindings.Add("checked", BangSinhVien, "GioiTinh", true);
             cbbLop.DataBindings.Add("SelectedValue", BangSinhVien, "MaLop", true);
             txtDiaChi.DataBindings.Add("text", BangSinhVien, "DiaChi", true);
-
+            pictureBoxHinh.DataBindings.Add("ImageLocation", BangSinhVien, "Hinh", true);
             DSSV = this.BindingContext[BangSinhVien];
             BatNutLenh(false);
         }
@@ -154,6 +156,18 @@ namespace Presentation
         private void txtTimKiem_MouseDown(object sender, MouseEventArgs e)
         {
             txtTimKiem.Text = "";
+        }
+
+        private void btnChonHinh_Click(object sender, EventArgs e)
+        {
+            openFileDialogHinh.Filter = "JPG File|*.jpg|PNG File|*.png|All File|*.*";
+            if(openFileDialogHinh.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialogHinh.SafeFileName;
+                string pathFile = path + "/" + fileName;
+                if (!File.Exists(pathFile)) File.Copy(openFileDialogHinh.FileName, pathFile);
+                pictureBoxHinh.ImageLocation = pathFile;
+            }
         }
     }
 }

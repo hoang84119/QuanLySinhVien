@@ -46,6 +46,7 @@
             this.txtMaSV = new System.Windows.Forms.TextBox();
             this.pictureBoxHinh = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnHuyTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.gvSinhVien = new System.Windows.Forms.DataGridView();
@@ -62,7 +63,7 @@
             this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
             this.btnThoat = new DevExpress.XtraEditors.SimpleButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnHuyTimKiem = new DevExpress.XtraEditors.SimpleButton();
+            this.openFileDialogHinh = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHinh)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -78,6 +79,7 @@
             this.btnChonHinh.Size = new System.Drawing.Size(126, 47);
             this.btnChonHinh.TabIndex = 0;
             this.btnChonHinh.Text = "Chọn hình";
+            this.btnChonHinh.Click += new System.EventHandler(this.btnChonHinh_Click);
             // 
             // groupBox1
             // 
@@ -236,6 +238,18 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tìm kiếm";
+            // 
+            // btnHuyTimKiem
+            // 
+            this.btnHuyTimKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnHuyTimKiem.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.btnHuyTimKiem.Enabled = false;
+            this.btnHuyTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuyTimKiem.ImageOptions.Image")));
+            this.btnHuyTimKiem.Location = new System.Drawing.Point(522, 21);
+            this.btnHuyTimKiem.Name = "btnHuyTimKiem";
+            this.btnHuyTimKiem.Size = new System.Drawing.Size(23, 24);
+            this.btnHuyTimKiem.TabIndex = 14;
+            this.btnHuyTimKiem.Click += new System.EventHandler(this.btnHuyTimKiem_Click);
             // 
             // btnTimKiem
             // 
@@ -398,17 +412,9 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "QUẢN LÝ SINH VIÊN";
             // 
-            // btnHuyTimKiem
+            // openFileDialogHinh
             // 
-            this.btnHuyTimKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnHuyTimKiem.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.btnHuyTimKiem.Enabled = false;
-            this.btnHuyTimKiem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnHuyTimKiem.Location = new System.Drawing.Point(522, 21);
-            this.btnHuyTimKiem.Name = "btnHuyTimKiem";
-            this.btnHuyTimKiem.Size = new System.Drawing.Size(23, 24);
-            this.btnHuyTimKiem.TabIndex = 14;
-            this.btnHuyTimKiem.Click += new System.EventHandler(this.btnHuyTimKiem_Click);
+            this.openFileDialogHinh.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -428,7 +434,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnChonHinh);
             this.Name = "Form1";
-            this.Text = "z";
+            this.Text = "QUẢN LÝ SINH VIÊN";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -477,6 +483,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
         private DevExpress.XtraEditors.SimpleButton btnHuyTimKiem;
+        private System.Windows.Forms.OpenFileDialog openFileDialogHinh;
     }
 }
 
